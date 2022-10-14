@@ -41,6 +41,8 @@ th, td{
     margin-bottom: 30px;
 }
 
+
+
 .right-te>h4{
     color: rgb(236, 22, 22);
 
@@ -53,6 +55,13 @@ th, td{
 .right-te>h1{
     padding-left: 14px;
     padding-top: 20px;
+    float:left;
+}
+
+.right-te>h2{
+
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .right-te>input{

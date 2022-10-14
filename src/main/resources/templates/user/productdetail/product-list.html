@@ -26,7 +26,8 @@
             <li class="right-te">
                 <h4 th:text="${ hgproduct.productName }"></h4>
                 <p>그리운 어머니의 손맛이 깃든 빠르게 먹을수 있는 떡국</p>
-                <h1>16,900원</h1>
+                <h1 th:text="${ hgproduct.productPrice }"></h1><h2> 원</h2>
+
                 <input type="number" value="수량을 선택해주세요" min="1" max="999" placeholder="수량을 선택해주세요"/>
                 <button id="ser" type="submit" value="등록">입력</button>
             </li>

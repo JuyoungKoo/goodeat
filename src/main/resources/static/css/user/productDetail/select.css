@@ -30,10 +30,15 @@ table > td{
 .postbox{
 	font-size: 24px;
     width:800px;
+    height:600px;
     padding:10px;
     margin:10px;
     border-radius:8px;
     resize: none;
+}
+
+.postbx{
+	height:600px;
 }
 
 .btn-sl{

@@ -84,7 +84,7 @@ public class ProductdetailController {
 	  
 	  @GetMapping("/regist") 
 	  public String goRegist() {
-	  
+		  
 	  return "user/productdetail/review/registReview"; 
 	  }
 	  
