@@ -77,8 +77,31 @@ public class PostService {
 		System.out.println(eventList.getContent());
 		
 		return eventList.map(post -> modelMapper.map(post, PostDTO.class));
+	}
+	
+		public PostDTO selectpostDetail(int postCode) {
+			
+			PostType postType = new PostType();
+			postType.setPostTypeCode(NOTICE_TYPE);
+			
+			Post post = postRepository.findByPostCodeAndPostTypeAndPostStatus(postCode, postType, ACTIVE_STATUS);
+			
+			
+			
+			return modelMapper.map(post, PostDTO.class);
 	
 	}
+
+		public PostDTO selecteventDetail(int postCode) {
+			
+			PostType postType = new PostType();
+			postType.setPostTypeCode(EVENT_TYPE);
+			
+			Post post = postRepository.findByPostCodeAndPostTypeAndPostStatus(postCode, postType, ACTIVE_STATUS);
+			
+			
+			return modelMapper.map(post, PostDTO.class);
+		}
 
 	
 	

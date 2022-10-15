@@ -134,7 +134,39 @@ public class PostController {
 		 
 		//return "redirect:/";
 		return "user/product/board/eventboard";
+	}
+	
+	
+		@GetMapping("noticedetail")
+		public String selectBoardDetail(Model model, @RequestParam int postCode) {
 		
+			log.info("PostCode : {}", postCode);
+			
+			PostDTO post = postService.selectpostDetail(postCode);
+			
+			log.info("Post : {}", post);
+			
+			model.addAttribute("post", post);
+		
+			
+			return "user/product/board/boarddetail";
 	};
 	
-}
+	
+	@GetMapping("eventdetail")
+	public String selecteventDetail(Model model, @RequestParam int postCode) {
+	
+		log.info("PostCode : {}", postCode);
+		
+		PostDTO post = postService.selecteventDetail(postCode);
+		
+		log.info("Post : {}", post);
+		
+		model.addAttribute("post", post);
+	
+		
+		return "user/product/board/eventdetail";
+};
+	
+	
+};

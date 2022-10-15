@@ -17,7 +17,7 @@ public interface PostRepository extends JpaRepository<Post, Long>{
 
 	Page<Post> findByPostTypeAndPostStatus(PostType noticeType, String activeStatus, Pageable pageable);
 
-	
+	Post findByPostCodeAndPostTypeAndPostStatus(int postCode, PostType postType, String noticeStatus) ;
 
 	
 

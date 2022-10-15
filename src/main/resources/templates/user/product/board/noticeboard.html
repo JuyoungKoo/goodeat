@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
    
     <link rel="stylesheet" href="/css/user/product/board.css">
     <link rel="stylesheet" href="/source/font/Cafe24Ssurround.ttf">
+    <script type="text/javascript" th:src="@{/js/product.js}"></script>
     <title>MainPage</title>
 </head>
 <body>
@@ -27,8 +29,8 @@
                 <div class="aside-wrap">
                     <nav class="menu-box">
                         <ul>
-                            <li><a href="#" class="menu">공지사항</a></li>
-                            <li><a href="#" class="menu">이벤트</a></li>
+                       		<li><a id="notice">공지사항</a></li>
+                            <li><a id="event">이벤트</a></li>
                             
                         </ul>
                     </nav>
@@ -44,18 +46,11 @@
             
                 <div class="main">
                   
-                  
-                       
-
-                  
                     <div class="board_sub">
                         <div class="sub_title1">
                             <span><b>공지사항</b></span> 
                         </div>
-                        <div class="sub_title2">
-                            <a href="#">
-                                <!-- <span><b>더보기</b></span>  -->
-                            </a>
+                        <div class="sub_title2">                                                              
                         </div>
                         <table class="board_list">
                             <caption>공지사항</caption>
@@ -69,7 +64,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="notice : ${noticeList}">
+                                <tr th:each="notice : ${noticeList}"
+                                	th:onclick="|location.href='/post/noticedetail?postCode=${notice.postCode}'|">
                                     <td th:text="${notice.postCode}"></td>
                                     <td th:text="${notice.postTitle}">
                                         <a href="#"></a>
@@ -82,8 +78,24 @@
 
                             </tbody>
                         </table>
-                        <div class="paging">
-                       
+                        <div id="paging" align="center">
+                       		
+                       	 	<button th:onclick="'location.href=\'/post/notice?page=' + @{${noticePaging.startPage}} + '\''">&lt;&lt;</button>	
+                   			<button th:onclick="'location.href=\'/post/notice?page=' + @{${noticePaging.currentPage - 1}} + '\''"
+									th:disabled="${ noticeList.first }"></button>
+                       		
+                       		<th:block th:each="page : ${ #numbers.sequence(noticePaging.startPage, noticePaging.endPage)}">
+								<button th:onclick="'location.href=\'/post/notice?page=' + @{${page}} + '\''"
+										th:text="${ page }"
+										th:disabled="${ noticePaging.currentPage eq page }">
+								</button>
+							</th:block>
+							
+							<button th:onclick="'location.href=\'/post/notice?page=' + @{${noticePaging.currentPage + 1}} + '\''"
+									th:disabled="${ noticeList.last }">></button>
+							
+							<button th:onclick="'location.href=\'/post/notice?page=' + @{${noticePaging.endPage}} + '\''">>></button>
+
                         </div>
                     </div>
 

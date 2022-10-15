@@ -68,11 +68,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="event:${eventList}">
+                                <tr th:each="event:${eventList}" 
+                                	>
                                     <td th:text="${event.postCode}"></td>
-                                    <td th:text="${event.postTitle}">
-                                        <a href="../main/boarddetail.html"></a>
-                                    </td>
+                                    <td th:text="${event.postTitle}"></td>
                                     <td th:text="${event.member.memberName}"></td>
                                     <td th:text="${event.postModifyDate}"></td>
                                     <td></td>
@@ -103,17 +102,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="notice : ${noticeList}">
+                                <tr th:each="notice : ${noticeList}"
+                                  	th:onclick="|location.href='/post/noticedetail?postCode=${notice.postCode}'|">
                                     <td th:text="${notice.postCode}"></td>
-                                    <td th:text="${notice.postTitle}">
-                                        <a href="#"></a>
-                                    </td>
+                                    <td th:text="${notice.postTitle}"></td>
                                     <td th:text="${notice.member.memberName}"></td>
                                     <td th:text="${notice.postModifyDate}"></td>
                                     <td></td>
-                                </tr>
-                              
-
+                                </tr>	
+                          		    
+																					
                             </tbody>
                         </table>
                        <!-- 페이징 바 처리 --> 

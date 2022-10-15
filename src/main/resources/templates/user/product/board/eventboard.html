@@ -7,6 +7,7 @@
    
     <link rel="stylesheet" href="/css/user/product/board.css">
     <link rel="stylesheet" href="/source/font/Cafe24Ssurround.ttf">
+    <script type="text/javascript" th:src="@{/js/product.js}"></script>
     <title>MainPage</title>
 </head>
 <body>
@@ -27,8 +28,8 @@
                 <div class="aside-wrap">
                     <nav class="menu-box">
                         <ul>
-                            <li><a href="#" class="menu">공지사항</a></li>
-                            <li><a href="#" class="menu">이벤트</a></li>
+                            <li><a id="notice">공지사항</a></li>
+                            <li><a id="event">이벤트</a></li>
                             
                         </ul>
                     </nav>
@@ -68,7 +69,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="event:${eventList}">
+                                <tr th:each="event:${eventList}"
+                                	th:onclick="|location.href='/post/eventdetail?postCode=${event.postCode}'|">
                                     <td th:text="${event.postCode}"></td>
                                     <td th:text="${event.postTitle}">
                                         <a href="../main/boarddetail.html"></a>
@@ -80,9 +82,25 @@
 
                             </tbody>
                            </table>
-                         <div class="paging">
+                        <div id="paging" align="center">
                        		
-                         </div>
+                       	 	<button th:onclick="'location.href=\'/post/event?page=' + @{${eventPaging.startPage}} + '\''">&lt;&lt;</button>	
+                   			<button th:onclick="'location.href=\'/post/event?page=' + @{${eventPaging.currentPage - 1}} + '\''"
+									th:disabled="${eventList.first }"></button>
+                       		
+                       		<th:block th:each="page : ${ #numbers.sequence(eventPaging.startPage, eventPaging.endPage)}">
+								<button th:onclick="'location.href=\'/post/event?page=' + @{${page}} + '\''"
+										th:text="${ page }"
+										th:disabled="${ eventPaging.currentPage eq page }">
+								</button>
+							</th:block>
+							
+							<button th:onclick="'location.href=\'/post/event?page=' + @{${eventPaging.currentPage + 1}} + '\''"
+									th:disabled="${ eventList.last }">></button>
+							
+							<button th:onclick="'location.href=\'/post/event?page=' + @{${eventPaging.endPage}} + '\''">>></button>
+
+                        </div>
 
                   
                    
